@@ -28,12 +28,10 @@
 
   /* Ink 2 — deep green. A full ink, not an accent. */
   --green: #1f4b3f;
-  --green-80: #1f4b3fcc;
   --green-55: #1f4b3f8c;
   /* 4.84:1 on paper — the second ink at content strength. */
   --green-76: #1f4b3fc2;
   --green-30: #1f4b3f4d;
-  --green-15: #1f4b3f26;
   --green-08: #1f4b3f14;
 
   /* Registration: the lattice unit. Everything sits on this. */
@@ -41,6 +39,33 @@
   --gutter: clamp(1.25rem, 3.2vw, 3.5rem);
   --margin-out: clamp(1.25rem, 5vw, 6rem);
   --margin-in: clamp(1.25rem, 2vw, 2.25rem); /* deliberately unequal — asymmetry is the law */
+
+
+  /* Type scale. Every font-size in this stylesheet is one of these; a size
+     that is not on the scale does not ship. */
+  --t-cell-xs: 9px;
+  --t-cell-sm: 10px;
+  --t-cell: 11px;
+  --t-label-sm: 0.625rem;
+  --t-label: 0.6875rem;
+  --t-control: 0.75rem;
+  --t-detail: 0.8125rem;
+  --t-small: 0.9375rem;
+  --t-body: 1rem;
+  --t-root: 16px;
+  --t-prose: clamp(1.0625rem, 1.15vw, 1.25rem);
+  --t-prose-tight: clamp(1rem, 1.1vw, 1.1875rem);
+  --t-prose-wide: clamp(1rem, 1.15vw, 1.1875rem);
+  --t-mark: clamp(1.6rem, 4vw, 2.4rem);
+  --t-primary-serif: clamp(1.6rem, 3.6vw, 2.65rem);
+  --t-primary: clamp(2rem, 5.2vw, 3.6rem);
+  --t-figure-sm: clamp(2.4rem, 14vw, 3.6rem);
+  --t-display-m: clamp(1.85rem, 3.6vw, 3.15rem);
+  --t-tally: clamp(2.6rem, 7vw, 5.6rem);
+  --t-price: clamp(2.6rem, 7vw, 5.4rem);
+  --t-figure: clamp(3rem, 9vw, 7.5rem);
+  --t-display-l: clamp(2.4rem, 6.4vw, 5.4rem);
+  --t-display-xl: clamp(3.1rem, 10.4vw, 9.25rem);
 
   /* Motion — from the animation skill's tables, not invented */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -80,7 +105,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-text), Georgia, serif;
-  font-size: 16px;
+  font-size: var(--t-root);
   line-height: 1.55;
   overflow-x: clip;
   font-synthesis-weight: none;
@@ -169,22 +194,22 @@ table,
 }
 
 .display-xl {
-  font-size: clamp(3.1rem, 10.4vw, 9.25rem);
+  font-size: var(--t-display-xl);
 }
 
 .display-l {
-  font-size: clamp(2.4rem, 6.4vw, 5.4rem);
+  font-size: var(--t-display-l);
 }
 
 .display-m {
-  font-size: clamp(1.85rem, 3.6vw, 3.15rem);
+  font-size: var(--t-display-m);
   line-height: 0.96;
   letter-spacing: -0.022em;
 }
 
 .prose-serif {
   font-family: var(--font-text), Georgia, serif;
-  font-size: clamp(1.0625rem, 1.15vw, 1.25rem);
+  font-size: var(--t-prose);
   line-height: 1.62;
   max-width: 64ch;
   text-wrap: pretty;
@@ -198,7 +223,7 @@ table,
 
 .label {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.6875rem;
+  font-size: var(--t-label);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -207,7 +232,7 @@ table,
 
 .label-sm {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.625rem;
+  font-size: var(--t-label-sm);
   font-weight: 600;
   letter-spacing: 0.19em;
   text-transform: uppercase;
@@ -218,22 +243,12 @@ table,
    Press furniture
    ------------------------------------------------------------ */
 
-.rule-t {
-  border-top: var(--rule) solid var(--ink-20);
-}
 .rule-b {
   border-bottom: var(--rule) solid var(--ink-20);
-}
-.rule-t-ink {
-  border-top: 2px solid var(--ink);
 }
 .rule-b-ink {
   border-bottom: 2px solid var(--ink);
 }
-.rule-green {
-  border-top: var(--rule) solid var(--green-30);
-}
-
 /* Toned stock — a second paper, not a card. No radius, no shadow. */
 .stock {
   background: var(--paper-toned);
@@ -302,12 +317,6 @@ table,
   color: var(--ink);
 }
 
-.knockout-green {
-  -webkit-text-stroke: 0.42em var(--paper);
-  paint-order: stroke fill;
-  color: var(--green);
-}
-
 /* ------------------------------------------------------------
    The lattice — measured in ch, and inviolable.
    Narrow screens scale the cell. They never reflow it into cards.
@@ -322,13 +331,6 @@ table,
   font-variant-numeric: tabular-nums lining-nums;
 }
 
-.lat-row {
-  display: grid;
-  grid-template-columns:
-    9ch 8ch 6ch 8ch 5ch 9ch 9ch 8ch;
-  column-gap: 2ch;
-}
-
 /* ------------------------------------------------------------
    Controls — ink-ruled, never a pill, never a shadow.
    ------------------------------------------------------------ */
@@ -341,7 +343,7 @@ table,
   gap: 0.9em;
   padding: 0.95em 1.5em;
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: var(--t-control);
   font-weight: 650;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -380,7 +382,7 @@ table,
   gap: 0.75em;
   padding: 0.95em 0;
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: var(--t-control);
   font-weight: 650;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -529,11 +531,6 @@ table,
       animation-range: 48% 66%;
     }
 
-    .resolve-count {
-      animation: countdown linear both;
-      animation-timeline: --resolve;
-      animation-range: 24% 66%;
-    }
   }
 }
 
@@ -590,18 +587,6 @@ table,
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes countdown {
-  0% {
-    opacity: 1;
-  }
-  88% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
@@ -766,7 +751,7 @@ table,
 
 .thumb-n {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.625rem;
+  font-size: var(--t-label-sm);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--green);
@@ -778,7 +763,7 @@ table,
 
 .thumb-label {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.625rem;
+  font-size: var(--t-label-sm);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -844,7 +829,7 @@ table,
 
 .resolve-tally {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  font-size: var(--t-tally);
   font-weight: 200;
   line-height: 0.84;
   letter-spacing: -0.04em;
@@ -871,7 +856,7 @@ table,
   overflow: hidden;
   padding: clamp(1.6rem, 4vh, 3rem) var(--margin-in) clamp(1.2rem, 3vh, 2rem)
     var(--margin-out);
-  font-size: 11px;
+  font-size: var(--t-cell);
   line-height: 1.66;
   white-space: pre;
   column-count: 3;
@@ -943,7 +928,7 @@ table,
 }
 
 .resolve-lift {
-  font-size: 11px;
+  font-size: var(--t-cell);
   margin-block: clamp(1.8rem, 5vh, 3rem);
   white-space: pre;
   color: var(--green);
@@ -965,7 +950,7 @@ table,
 
 .resolve-verdict-sub {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: var(--t-control);
   font-weight: 500;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -1071,7 +1056,7 @@ table,
 @media (max-width: 860px) {
   .resolve-field {
     column-count: 1;
-    font-size: 9px;
+    font-size: var(--t-cell-xs);
   }
   .resolve-head {
     flex-direction: column;
@@ -1174,7 +1159,7 @@ table,
 
 .ticket-primary {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: clamp(2rem, 5.2vw, 3.6rem);
+  font-size: var(--t-primary);
   font-weight: 200;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -1185,7 +1170,7 @@ table,
 .ticket-primary-serif {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 400;
-  font-size: clamp(1.6rem, 3.6vw, 2.65rem);
+  font-size: var(--t-primary-serif);
   letter-spacing: -0.02em;
   line-height: 1.02;
 }
@@ -1210,7 +1195,7 @@ table,
 
 .ticket-row dd {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.8125rem;
+  font-size: var(--t-detail);
   font-weight: 520;
   letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
@@ -1218,7 +1203,7 @@ table,
 
 .ticket-row-wide dd {
   font-family: var(--font-text), Georgia, serif;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   letter-spacing: 0;
   line-height: 1.5;
   color: var(--ink-70);
@@ -1274,7 +1259,7 @@ table,
 
 .ledger-v {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: clamp(3rem, 9vw, 7.5rem);
+  font-size: var(--t-figure);
   font-weight: 200;
   line-height: 0.84;
   letter-spacing: -0.045em;
@@ -1365,7 +1350,7 @@ table,
 }
 
 .log-label {
-  font-size: 0.8125rem;
+  font-size: var(--t-detail);
   font-weight: 640;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1379,14 +1364,14 @@ table,
 }
 
 .log-detail {
-  font-size: 0.75rem;
+  font-size: var(--t-control);
   letter-spacing: 0.06em;
   color: var(--ink-55);
 }
 
 .log-reason {
   font-family: var(--font-text), Georgia, serif;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   line-height: 1.5;
   max-width: 66ch;
   color: var(--ink-70);
@@ -1424,10 +1409,6 @@ table,
   width: 100%;
 }
 
-.person-credit {
-  margin-top: 0.7rem;
-  color: var(--ink-35);
-}
 
 .person-copy {
   padding-top: clamp(0.5rem, 3vh, 2rem);
@@ -1451,7 +1432,7 @@ table,
 
 .person-bio {
   font-family: var(--font-text), Georgia, serif;
-  font-size: 1rem;
+  font-size: var(--t-body);
   line-height: 1.6;
   margin-top: 1.1rem;
   color: var(--ink-70);
@@ -1503,7 +1484,7 @@ table,
 
 .flood-price-v {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  font-size: var(--t-price);
   font-weight: 200;
   line-height: 0.84;
   letter-spacing: -0.045em;
@@ -1543,7 +1524,7 @@ table,
   padding: 0.95rem 0;
   border-bottom: var(--rule) solid #faf8f426;
   font-family: var(--font-text), Georgia, serif;
-  font-size: 1rem;
+  font-size: var(--t-body);
   line-height: 1.5;
   text-wrap: pretty;
 }
@@ -1624,7 +1605,7 @@ table,
 }
 
 .colophon-mark {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: var(--t-mark);
   letter-spacing: 0.02em;
 }
 
@@ -1652,7 +1633,7 @@ table,
   grid-template-columns: 1.6rem 1fr;
   gap: 0.6rem;
   padding: 0.55rem 0;
-  font-size: 0.8125rem;
+  font-size: var(--t-detail);
   line-height: 1.5;
   color: var(--ink-70);
   border-bottom: var(--rule) solid var(--ink-07);
@@ -1664,7 +1645,7 @@ table,
 }
 
 .colophon-body {
-  font-size: 0.8125rem;
+  font-size: var(--t-detail);
   line-height: 1.62;
   color: var(--ink-55);
   max-width: 52ch;
@@ -1708,17 +1689,6 @@ table,
   51%,
   100% {
     color: var(--paper);
-  }
-}
-
-@keyframes reverse-out-soft {
-  0%,
-  49% {
-    color: var(--ink-70);
-  }
-  51%,
-  100% {
-    color: #faf8f4d9;
   }
 }
 
@@ -1787,7 +1757,7 @@ table,
 
 .reasoning-body {
   font-family: var(--font-text), Georgia, serif;
-  font-size: clamp(1rem, 1.1vw, 1.1875rem);
+  font-size: var(--t-prose-tight);
   line-height: 1.66;
   max-width: 72ch;
   color: var(--ink-90);
@@ -1833,7 +1803,7 @@ table,
 
 .ledger-k {
   font-family: var(--font-grot), system-ui, sans-serif;
-  font-size: 0.8125rem;
+  font-size: var(--t-detail);
   font-weight: 500;
   line-height: 1.55;
   letter-spacing: 0.01em;
@@ -1844,7 +1814,7 @@ table,
 
 .flood-qualifier {
   font-family: var(--font-text), Georgia, serif;
-  font-size: clamp(1rem, 1.15vw, 1.1875rem);
+  font-size: var(--t-prose-wide);
   line-height: 1.6;
   color: #faf8f4cc;
   max-width: 62ch;
@@ -1929,7 +1899,7 @@ table,
   }
 
   .resolve-lift {
-    font-size: 10px;
+    font-size: var(--t-cell-sm);
   }
 
   .resolve-verdict {
@@ -1937,7 +1907,7 @@ table,
   }
 
   .resolve-tally {
-    font-size: clamp(2.4rem, 14vw, 3.6rem);
+    font-size: var(--t-figure-sm);
   }
 }
 
@@ -1947,7 +1917,7 @@ table,
   }
 
   .resolve-lift {
-    font-size: 9px;
+    font-size: var(--t-cell-xs);
   }
 }
 

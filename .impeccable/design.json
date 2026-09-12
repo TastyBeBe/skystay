@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T21:21:36.426Z",
+  "title": "Design System: Sky Stay Travel",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Press Black",
+        "canonical": "#16150f",
+        "note": "The first ink. Warm near-black with an olive cast, never pure #000. 17.24:1 on paper. The ramp is the project's own alpha ladder: ink at reduced coverage over warm stock, not grey.",
+        "tonalRamp": [
+          "#16150f",
+          "#16150fe6",
+          "#16150fb3",
+          "#16150f9c",
+          "#16150f59",
+          "#16150f33",
+          "#16150f1f",
+          "#16150f12"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Bottle Green",
+        "canonical": "#1f4b3f",
+        "note": "The second ink of a two-colour press, at full strength. Floods whole regions and sets type; never a small coloured container on neutral. 9.27:1 on paper, and paper reverses out of it at the same 9.27:1.",
+        "tonalRamp": [
+          "#1f4b3f",
+          "#1f4b3fc2",
+          "#1f4b3f8c",
+          "#1f4b3f4d",
+          "#1f4b3f14"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Bible Stock",
+        "canonical": "#faf8f4",
+        "note": "The ground of the whole book, the colour type reverses to inside the flood, and the knockout-plate colour. The ramp is the project's three real stocks, not a synthesised scale.",
+        "tonalRamp": [
+          "#faf8f4",
+          "#f2eee6",
+          "#eae4d8"
+        ]
+      },
+      "paper-toned": {
+        "role": "neutral",
+        "displayName": "Toned Stock",
+        "canonical": "#f2eee6",
+        "note": "A second sheet, not a card. The 'who pays' sheet, the ticket, the thumb tabs, the scrollbar track. Changes the paper, never the elevation.",
+        "tonalRamp": [
+          "#faf8f4",
+          "#f2eee6",
+          "#eae4d8"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Deep Stock",
+        "canonical": "#eae4d8",
+        "note": "The third and deepest stock. Used once, as the thumb-tab hover ground.",
+        "tonalRamp": [
+          "#faf8f4",
+          "#f2eee6",
+          "#eae4d8"
+        ]
+      },
+      "ink-quiet": {
+        "role": "neutral",
+        "displayName": "Quiet Ink",
+        "canonical": "#16150f9c",
+        "note": "Same value as --ink-55, kept as a separate name on purpose: content that visually wants --ink-35 (2.22:1) is written at --ink-quiet instead. 4.87:1 on paper, 4.73:1 on toned stock."
+      },
+      "green-76": {
+        "role": "secondary",
+        "displayName": "Second Ink, Content Strength",
+        "canonical": "#1f4b3fc2",
+        "note": "The second ink at the lowest coverage that still carries type: 4.83:1 on paper. This is the fare-basis column inside the lattice. Below this, green is decorative only."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero headline only, knocked out of the fare field with a 0.42em paper text-stroke."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every section h2, set against the sheet head's 2px ink rule."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Pull quotes, the concierge's name, the resolve verdict, the close line."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Section prose in Libre Caslon Text, capped at 64ch, real paragraph breaks preserved at 1.15em."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section labels and controls. Archivo 600 at 0.16em, uppercase."
+      },
+      "label-sm": {
+        "displayName": "Small Label",
+        "purpose": "Legends, captions, the effective-dates banner, the footer. Archivo 600 at 0.19em, uppercase."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Archivo at hairline weight (200) and display size for the ledger values, the membership price and the resolve tally. Always tabular."
+      },
+      "lattice": {
+        "displayName": "Lattice",
+        "purpose": "The fare field. Archivo 11px tabular under white-space: pre, with values padded to exact ch widths. Drops to 9px below 860px."
+      }
+    },
+    "shadows": [
+      {
+        "name": "knockout-plate-tight",
+        "value": "0 0 0 0.55rem var(--paper)",
+        "purpose": "NOT a shadow. A zero-offset, zero-blur paper plate punched out behind the hero subhead and controls where they overlap the drifting fare field."
+      },
+      {
+        "name": "knockout-plate-wide",
+        "value": "0 0 0 0.7rem var(--paper)",
+        "purpose": "NOT a shadow. The wider paper plate behind the resolve tally and foot, and — in the no-timeline and reduced-motion fallbacks — behind the lift label, the lifted line and the verdict."
+      },
+      {
+        "name": "text-knockout",
+        "value": "-webkit-text-stroke: 0.42em var(--paper); paint-order: stroke fill",
+        "purpose": "The hero headline's own plate: the stroke paints first and the fill over it, so the letterforms carve a paper channel through the field."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "The system's only easing in live use. Every transition in the build runs on it: control hovers, link underlines, the thumb-tab slide, the log-row ground."
+      },
+      {
+        "name": "d-press",
+        "value": "140ms",
+        "purpose": "Press feedback — the primary control's own colour change."
+      },
+      {
+        "name": "d-ui",
+        "value": "200ms",
+        "purpose": "Default state change: hover plates, link underline, border and colour shifts."
+      },
+      {
+        "name": "d-panel",
+        "value": "320ms",
+        "purpose": "The one larger move — the thumb-index tab sliding out of the page edge."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Declared in :root from the system's fixed easing table; unreferenced in this build. Reserved, not invented per component."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Declared in :root from the system's fixed easing table; unreferenced in this build. Reserved, not invented per component."
+      },
+      {
+        "name": "resolve-timeline",
+        "value": "view-timeline-name: --resolve on a 420svh section (340svh below 860px), read by a 100svh sticky stage",
+        "purpose": "The page's one large motion. Rows fade 42-68% on per-row seeded windows, the flood fills 54-66%, the reversal cuts hard at each keyframe's 50% mark, the lift scales 44-74%, the tally counts 406 to 1 across 42-66%, the verdict rises 63-74%."
+      },
+      {
+        "name": "section-timelines",
+        "value": "timeline-scope: --s-resolve, --s-document, --s-trust, --s-work, --s-person, --s-membership on body",
+        "purpose": "Each sheet publishes a named view-timeline; the matching thumb-index tab reads it with a steps(1, end) animation to mark the current page. No JS."
+      },
+      {
+        "name": "reveal",
+        "value": "animation-timeline: view(); animation-range: entry 4% cover 22%",
+        "purpose": "The single entrance grammar — 1.15rem rise plus opacity, used once per section on [data-reveal], never scattered. Content is visible by default; the reveal is an enhancement."
+      },
+      {
+        "name": "lat-drift",
+        "value": "240s linear infinite (310s and 265s for the second and third columns)",
+        "purpose": "The hero fare field's continuous drift. Three columns at different rates so the sheet never reads as one obedient block. Stops dead under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "430px",
+        "purpose": "max-width. Resolve lift scale drops to 1; lattice to 9px."
+      },
+      {
+        "name": "controls-stack",
+        "value": "560px",
+        "purpose": "max-width. The two hero controls stack."
+      },
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Tailwind min-width. Register mark and the legend's middle span appear."
+      },
+      {
+        "name": "field-2col",
+        "value": "760px",
+        "purpose": "max-width. The second hero field column is dropped."
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "purpose": "Tailwind min-width. The effective-dates banner appears in the masthead."
+      },
+      {
+        "name": "stack",
+        "value": "820px",
+        "purpose": "max-width. Ticket, ledger, flood columns and photo ratios collapse."
+      },
+      {
+        "name": "stage",
+        "value": "860px",
+        "purpose": "max-width. Resolve field collapses 3 columns to 1, lattice to 9px, section height to 340svh, lift scale to 1.12."
+      },
+      {
+        "name": "heads",
+        "value": "900px",
+        "purpose": "max-width. Two-column section heads, the person grid and the log row collapse."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Tailwind min-width and a project min-width query. The thumb index appears and --margin-in widens to clamp(4.25rem, 5vw, 6.5rem) to clear it."
+      },
+      {
+        "name": "field-3col",
+        "value": "1100px",
+        "purpose": "max-width. The third hero field column is dropped."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The page's primary action. Ink-filled, square, with the second ink arriving as a plate wiped up from below on hover.",
+      "html": "<a href=\"#membership\" class=\"ds-btn-primary\">REQUEST YOUR CONCIERGE<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\"/></svg></a>",
+      "css": ".ds-btn-primary { position: relative; display: inline-flex; align-items: center; gap: 0.9em; padding: 0.95em 1.5em; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.75rem; font-weight: 650; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--paper, #faf8f4); background: var(--ink, #16150f); border: none; border-radius: 0; cursor: pointer; overflow: hidden; isolation: isolate; transition: color 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-primary::before { content: \"\"; position: absolute; inset: 0; z-index: -1; background: var(--green, #1f4b3f); transform: translateY(101%); transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); } @media (hover: hover) and (pointer: fine) { .ds-btn-primary:hover::before { transform: translateY(0); } } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--green, #1f4b3f); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The secondary action. No fill, ink type on a hairline bottom rule; hover takes both to the second ink.",
+      "html": "<a href=\"#resolve\" class=\"ds-btn-ghost\">SEE A READING IN FULL<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M8 2v11M4 9l4 4 4-4\"/></svg></a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 0.75em; padding: 0.95em 0; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.75rem; font-weight: 650; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--ink, #16150f); background: none; border: none; border-radius: 0; border-bottom: 1px solid var(--ink-35, #16150f59); cursor: pointer; transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1), color 200ms cubic-bezier(0.23, 1, 0.32, 1); } @media (hover: hover) and (pointer: fine) { .ds-btn-ghost:hover { color: var(--green, #1f4b3f); border-color: var(--green, #1f4b3f); } } .ds-btn-ghost:focus-visible { outline: 2px solid var(--green, #1f4b3f); outline-offset: 3px; }"
+    },
+    {
+      "name": "Reverse Button",
+      "kind": "button",
+      "refersTo": "button-reverse",
+      "description": "The same control reversed for the flooded close: paper plate, green type, and an ink wipe on hover.",
+      "html": "<a href=\"#top\" class=\"ds-btn-reverse\">REQUEST YOUR CONCIERGE<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M2 8h11M9 4l4 4-4 4\"/></svg></a>",
+      "css": ".ds-btn-reverse { position: relative; display: inline-flex; align-items: center; gap: 0.9em; padding: 1.15em 1.9em; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--green, #1f4b3f); background: var(--paper, #faf8f4); border: none; border-radius: 0; cursor: pointer; overflow: hidden; isolation: isolate; transition: color 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-reverse::before { content: \"\"; position: absolute; inset: 0; z-index: -1; background: var(--ink, #16150f); transform: translateY(101%); transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); } @media (hover: hover) and (pointer: fine) { .ds-btn-reverse:hover { color: var(--paper, #faf8f4); } .ds-btn-reverse:hover::before { transform: translateY(0); } } .ds-btn-reverse:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Thumb Index Tab",
+      "kind": "nav",
+      "refersTo": "thumb-tab",
+      "description": "Furniture cut into the right page edge. Parked so only the page number shows; hover, focus or the section's own scroll timeline brings it in. The current page inverts to solid ink.",
+      "html": "<nav class=\"ds-thumb\" aria-label=\"Sections\"><a href=\"#resolve\" class=\"ds-thumb-tab\" aria-label=\"The reading, page 12\"><span class=\"ds-thumb-n\">12</span><span class=\"ds-thumb-label\">The reading</span></a><a href=\"#document\" class=\"ds-thumb-tab\" data-on aria-label=\"What arrives, page 28\"><span class=\"ds-thumb-n\">28</span><span class=\"ds-thumb-label\">What arrives</span></a><a href=\"#trust\" class=\"ds-thumb-tab\" aria-label=\"Who pays, page 44\"><span class=\"ds-thumb-n\">44</span><span class=\"ds-thumb-label\">Who pays</span></a></nav>",
+      "css": ".ds-thumb { display: flex; flex-direction: column; align-items: flex-end; } .ds-thumb-tab { display: flex; align-items: center; gap: 0.55rem; justify-content: flex-start; padding: 0.5rem 0.9rem; background: var(--paper-toned, #f2eee6); border: 1px solid var(--ink-12, #16150f1f); border-right: none; border-bottom: none; border-radius: 0; text-decoration: none; transform: translate3d(calc(100% - 2.55rem), 0, 0); transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-thumb-tab:last-child { border-bottom: 1px solid var(--ink-12, #16150f1f); } .ds-thumb-n { order: 1; width: 1.55rem; flex: none; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--green, #1f4b3f); } .ds-thumb-label { order: 2; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--ink-70, #16150fb3); } @media (hover: hover) and (pointer: fine) { .ds-thumb-tab:hover { transform: translate3d(0, 0, 0); background: var(--paper-deep, #eae4d8); } } .ds-thumb-tab:focus-visible { transform: translate3d(0, 0, 0); outline: 2px solid var(--green, #1f4b3f); outline-offset: 3px; } .ds-thumb-tab[data-on] { background: var(--ink, #16150f); border-color: var(--ink, #16150f); transform: translate3d(0, 0, 0); } .ds-thumb-tab[data-on] .ds-thumb-n { color: var(--paper, #faf8f4); } .ds-thumb-tab[data-on] .ds-thumb-label { color: #faf8f4e0; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "The sticky head of the book: wordmark, the effective-dates banner a timetable always carries, the register mark, and the one persistent link. Paper ground, 2px ink rule beneath.",
+      "html": "<header class=\"ds-masthead\"><a href=\"#top\" class=\"ds-masthead-mark\"><span class=\"ds-wordmark\">SKY STAY</span><span class=\"ds-wordmark-tail\">Travel</span></a><p class=\"ds-masthead-banner\">EFFECTIVE 12 SEPT 2026 THROUGH 31 MAR 2027 &middot; ALL TIMES LOCAL &middot; ALL FARES SPECIMEN &middot; EDITION 41</p><div class=\"ds-masthead-end\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"4.4\"/><path d=\"M8 0.6v4.2M8 11.2v4.2M0.6 8h4.2M11.2 8h4.2\"/></svg><a href=\"#membership\" class=\"ds-masthead-link\">Membership</a></div></header>",
+      "css": ".ds-masthead { display: flex; align-items: stretch; padding-inline: clamp(1.25rem, 5vw, 6rem); background: var(--paper, #faf8f4); border-bottom: 2px solid var(--ink, #16150f); } .ds-masthead-mark { display: flex; align-items: baseline; gap: 0.55em; padding: 0.7rem clamp(1.25rem, 3.2vw, 3.5rem) 0.7rem 0; text-decoration: none; flex-shrink: 0; color: var(--ink, #16150f); } .ds-wordmark { font-family: var(--font-display, \"Libre Caslon Display\"), Georgia, serif; font-size: 1.22rem; line-height: 1; letter-spacing: 0.02em; } .ds-wordmark-tail { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; line-height: 1; color: var(--green, #1f4b3f); transform: translateY(-0.15em); } .ds-masthead-banner { flex: 1; display: flex; align-items: center; margin: 0; padding-left: clamp(1.25rem, 3.2vw, 3.5rem); border-left: 1px solid var(--ink-20, #16150f33); font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; line-height: 1; color: var(--ink-55, #16150f9c); } .ds-masthead-end { display: flex; align-items: center; gap: clamp(1.25rem, 3.2vw, 3.5rem); padding-left: clamp(1.25rem, 3.2vw, 3.5rem); border-left: 1px solid var(--ink-20, #16150f33); color: var(--green-55, #1f4b3f8c); } .ds-masthead-link { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1; text-decoration: none; white-space: nowrap; color: var(--ink, #16150f); }"
+    },
+    {
+      "name": "Ticket",
+      "kind": "card",
+      "refersTo": "ticket",
+      "description": "The system's only container: one document with two halves and an authored perforation, on toned stock. Sky is set in the grotesque, Stay in the serif. No radius, no shadow, no hover.",
+      "html": "<div class=\"ds-ticket\"><div class=\"ds-ticket-half\"><div class=\"ds-ticket-half-head\"><span class=\"ds-ticket-label\">SKY &mdash; THE FLIGHT</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\" class=\"ds-ticket-reg\"><circle cx=\"8\" cy=\"8\" r=\"4.4\"/><path d=\"M8 0.6v4.2M8 11.2v4.2M0.6 8h4.2M11.2 8h4.2\"/></svg></div><p class=\"ds-ticket-primary\">LHR SIN</p><dl class=\"ds-ticket-rows\"><div class=\"ds-ticket-row\"><dt>Carrier</dt><dd>SQ 319</dd></div><div class=\"ds-ticket-row\"><dt>Depart</dt><dd>1855</dd></div><div class=\"ds-ticket-row\"><dt>Fare basis</dt><dd class=\"ds-accent\">DNN2SG</dd></div></dl></div><div class=\"ds-ticket-perf\" aria-hidden=\"true\"></div><div class=\"ds-ticket-half\"><div class=\"ds-ticket-half-head\"><span class=\"ds-ticket-label\">STAY &mdash; THE ROOM</span></div><p class=\"ds-ticket-primary ds-ticket-primary-serif\">Gemmill House, Telok Ayer</p><dl class=\"ds-ticket-rows\"><div class=\"ds-ticket-row\"><dt>Room</dt><dd>Shophouse King, floor 3</dd></div><div class=\"ds-ticket-row\"><dt>Rate code</dt><dd class=\"ds-accent\">LRW-4B</dd></div><div class=\"ds-ticket-row\"><dt>Held until</dt><dd>1800 on the day</dd></div></dl></div></div>",
+      "css": ".ds-ticket { display: grid; grid-template-columns: 1fr auto 1fr; background: var(--paper-toned, #f2eee6); border: 1px solid var(--ink-20, #16150f33); border-radius: 0; color: var(--ink, #16150f); } .ds-ticket-half { padding: clamp(1.4rem, 3vw, 2.6rem); min-width: 0; } .ds-ticket-half-head { display: flex; align-items: center; justify-content: space-between; gap: clamp(1.25rem, 3.2vw, 3.5rem); padding-bottom: 1rem; border-bottom: 1px solid var(--ink-20, #16150f33); } .ds-ticket-label { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1; color: var(--green, #1f4b3f); } .ds-ticket-reg { color: var(--ink-35, #16150f59); flex: none; } .ds-ticket-primary { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: clamp(2rem, 5.2vw, 3.6rem); font-weight: 200; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; margin: clamp(1.4rem, 3vh, 2.2rem) 0 clamp(1.6rem, 3.5vh, 2.4rem); } .ds-ticket-primary-serif { font-family: var(--font-display, \"Libre Caslon Display\"), Georgia, serif; font-weight: 400; font-size: clamp(1.6rem, 3.6vw, 2.65rem); line-height: 1.02; } .ds-ticket-rows { display: grid; gap: 0; margin: 0; } .ds-ticket-row { display: grid; grid-template-columns: 12ch 1fr; gap: clamp(1.25rem, 3.2vw, 3.5rem); padding: 0.7rem 0; border-top: 1px solid var(--ink-12, #16150f1f); align-items: baseline; } .ds-ticket-row dt { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; line-height: 1; color: var(--ink-55, #16150f9c); } .ds-ticket-row dd { margin: 0; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.8125rem; font-weight: 520; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; } .ds-accent { color: var(--green, #1f4b3f); } .ds-ticket-perf { width: 1px; background-image: repeating-linear-gradient(to bottom, var(--ink-35, #16150f59) 0 5px, transparent 5px 11px); } @media (max-width: 820px) { .ds-ticket { grid-template-columns: 1fr; } .ds-ticket-perf { width: auto; height: 1px; background-image: repeating-linear-gradient(to right, var(--ink-35, #16150f59) 0 5px, transparent 5px 11px); } }"
+    },
+    {
+      "name": "Log Row (kept / struck)",
+      "kind": "custom",
+      "refersTo": "log-item",
+      "description": "The traceability row: a mark, a routing label, its figures, and the sentence that kept or ended it. Kept rows carry a green tick and full-strength reason; struck rows carry a cross, a struck-through label and quiet ink.",
+      "html": "<ul class=\"ds-log\"><li class=\"ds-log-item ds-log-kept\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\" class=\"ds-log-mark\"><path d=\"M2.5 8.4l3.6 3.6L13.5 4.6\"/></svg><span class=\"ds-log-label\">SQ 319 / LRW-4B</span><span class=\"ds-log-detail\">1855 &middot; 77W &middot; DNN2SG</span><span class=\"ds-log-reason\">Only routing where the fare rule permits a same-day reissue and the hotel will hold to 1800 without a card guarantee.</span></li><li class=\"ds-log-item ds-log-struck\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\" class=\"ds-log-mark\"><path d=\"M3.5 3.5l9 9M12.5 3.5l-9 9\"/></svg><span class=\"ds-log-label\">BA 11 / NEG-3C</span><span class=\"ds-log-detail\">2115 &middot; 77W &middot; DNN2GB</span><span class=\"ds-log-reason\">Cheaper by 140, but the married-segment pricing collapses if the return moves, and this trip has a return that will move.</span></li></ul>",
+      "css": ".ds-log { list-style: none; padding: 0; margin: 0; } .ds-log-item { display: grid; grid-template-columns: 1.7rem minmax(9rem, 14ch) minmax(8rem, 20ch) 1fr; gap: clamp(0.75rem, 2vw, 1.75rem); align-items: baseline; padding: clamp(0.85rem, 1.8vh, 1.15rem) 0; border-bottom: 1px solid var(--ink-12, #16150f1f); transition: background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); } @media (hover: hover) and (pointer: fine) { .ds-log-item:hover { background: var(--green-08, #1f4b3f14); } } .ds-log-mark { transform: translateY(0.14em); } .ds-log-kept .ds-log-mark { color: var(--green, #1f4b3f); } .ds-log-struck .ds-log-mark { color: var(--ink-quiet, #16150f9c); } .ds-log-label { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.8125rem; font-weight: 640; letter-spacing: 0.06em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--ink, #16150f); } .ds-log-struck .ds-log-label { color: var(--ink-55, #16150f9c); text-decoration: line-through; text-decoration-color: var(--ink-35, #16150f59); text-decoration-thickness: 1px; } .ds-log-detail { font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--ink-55, #16150f9c); } .ds-log-reason { font-family: var(--font-text, \"Libre Caslon Text\"), Georgia, serif; font-size: 0.9375rem; line-height: 1.5; max-width: 66ch; color: var(--ink-70, #16150fb3); text-wrap: pretty; } .ds-log-kept .ds-log-reason { color: var(--ink, #16150f); } @media (max-width: 900px) { .ds-log-item { grid-template-columns: 1.4rem 1fr; row-gap: 0.35rem; } .ds-log-detail, .ds-log-reason { grid-column: 2; } }"
+    },
+    {
+      "name": "Fare Lattice",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The page's signature material: rows padded to exact ch widths and rendered under white-space: pre in a tabular face, so the columns align on characters rather than on a grid. The fare-basis column is the second ink at content strength.",
+      "html": "<div class=\"ds-lat\" aria-hidden=\"true\"><span class=\"ds-lat-line\"><span class=\"ds-lat-a\">LHR SIN  SQ 319  1855  1455+1 77W  1234567  </span><span class=\"ds-lat-b\">DNN2SG   </span><span class=\"ds-lat-a\">LRW-4B  </span></span><span class=\"ds-lat-line\"><span class=\"ds-lat-a\">LHR SIN  BA 11   2115  1710+1 77W  1234567  </span><span class=\"ds-lat-b\">DNN2GB   </span><span class=\"ds-lat-a\">CVG-12  </span></span><span class=\"ds-lat-line\"><span class=\"ds-lat-a\">LHR HKG  CX 250  1235  0720+1 351  1234567  </span><span class=\"ds-lat-b\">JRT14HK  </span><span class=\"ds-lat-a\">PRF-7C  </span></span><span class=\"ds-lat-line ds-lat-win\"><span>LHR SIN  SQ 319  1855  1455+1 77W  DNN2SG   LRW-4B  </span></span></div>",
+      "css": ".ds-lat { display: block; font-family: var(--font-grot, \"Archivo\"), system-ui, sans-serif; font-size: 11px; line-height: 1.72; letter-spacing: 0.02em; white-space: pre; font-variant-numeric: tabular-nums lining-nums; font-feature-settings: \"tnum\" 1, \"lnum\" 1; } .ds-lat-line { display: block; } .ds-lat-a { color: var(--ink-55, #16150f9c); } .ds-lat-b { color: var(--green-76, #1f4b3fc2); } .ds-lat-win { color: var(--green, #1f4b3f); font-weight: 620; margin-top: 1.72em; }"
+    },
+    {
+      "name": "Sheet Head",
+      "kind": "custom",
+      "refersTo": "sheet-paper",
+      "description": "How every sheet in the book opens: heading left, prose right, bottom-aligned on a 2px ink division. Collapses to one column below 900px.",
+      "html": "<div class=\"ds-sheet-head\"><h2 class=\"ds-sheet-h\">Who pays for the reading</h2><div class=\"ds-sheet-body\"><p>The company is paid by the member and by nobody else. No commission, no rebate, no placement money.</p></div></div>",
+      "css": ".ds-sheet-head { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(1.25rem, 3.2vw, 3.5rem) clamp(2rem, 6vw, 7rem); align-items: end; padding-bottom: clamp(2.2rem, 5vh, 3.6rem); border-bottom: 2px solid var(--ink, #16150f); } .ds-sheet-h { margin: 0; font-family: var(--font-display, \"Libre Caslon Display\"), Georgia, serif; font-weight: 400; font-size: clamp(2.4rem, 6.4vw, 5.4rem); line-height: 0.86; letter-spacing: -0.032em; text-wrap: balance; color: var(--ink, #16150f); } .ds-sheet-body { padding-bottom: 0.35rem; } .ds-sheet-body p { margin: 0; font-family: var(--font-text, \"Libre Caslon Text\"), Georgia, serif; font-size: clamp(1.0625rem, 1.15vw, 1.25rem); line-height: 1.62; max-width: 64ch; text-wrap: pretty; color: var(--ink, #16150f); } @media (max-width: 900px) { .ds-sheet-head { grid-template-columns: 1fr; align-items: start; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Two-Ink Timetable",
+    "overview": "This is a printed object, not a screen: an airline timetable book run on a two-colour press. Warm bible stock, black ink, one second ink of deep green, and nothing else. The page opens on a dense live fare field — hundreds of `ch`-set rows of city pairs, flight numbers, departure times, fare bases and hotel rate codes — with the headline knocked out of it the way a second plate knocks out of the first. The whole surface is furniture a real timetable carries: an effective-dates banner, hairline rules, a footnote-glyph legend, a thumb index cut into the page edge, and an unequal outer margin that the table is ranged left against.\n\nThe density is the argument. The product sells a named person reading a field the member will never look at, so the field is printed at full strength and the single decided line is the only thing that ever resolves. Restraint is structural here, not stylistic — a surface that reads as commission-funded (a badge, a deal, a coloured call-to-action floating on neutral) would contradict the company's only position. There is no hero photograph, no gradient, no rounded corner, no drop shadow and no third colour anywhere in the build; the three photographs that do ship are duotoned into the same two inks so they read as printed on the same press.\n\nMotion is native CSS scroll-driven animation and nothing else — no motion library is installed. One large motion carries the page: a 420svh sticky stage where 132 rows fade out on staggered ranges, the ground takes the second ink for a single beat, the surviving line lifts and scales, and a running counter falls from 406 to 1. Everything else is one entrance grammar, used once per section.",
+    "keyCharacteristics": [
+      "Two inks and three paper stocks; every other value is an alpha of those five",
+      "Square corners everywhere, hairline and 2px ink rules, no shadows",
+      "Display Caslon set at 0.86 leading — tight enough that lines collide",
+      "A `ch`-measured fare lattice that scales but never reflows into cards",
+      "Ranged-left asymmetry: the outer margin is always larger than the inner",
+      "All motion scroll-driven, all of it optional, none of it required for legibility"
+    ],
+    "rules": [
+      {
+        "name": "The Two Inks Rule",
+        "body": "Black ink, one second ink, three stocks. Every other colour in this system is an alpha of --ink or --green. There is no third hue anywhere — not in an icon, not in a state, not in a photograph. Photographs are duotoned (grayscale, mix-blend-mode: screen over a green ground) so they print in the same two inks as the type.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Never Floats Rule",
+        "body": "The second ink either sets type or floods a whole region — a full sheet, the full viewport of the resolve stage, the entire close. It is never a small coloured container on a neutral ground: no green pill, no green badge, no green filled button on paper. The primary control is filled in black ink and takes green only as a hover wipe that fills the whole control from below.",
+        "section": "colors"
+      },
+      {
+        "name": "The Contrast Floor Rule",
+        "body": "Content-bearing colours are --ink (17.24:1), --ink-90 (13.33:1), --ink-70 (6.65:1), --ink-55 / --ink-quiet (4.87:1 on paper, 4.73:1 on toned stock) and --green-76 (4.83:1 on paper). --ink-35 (2.22:1) and --green-55 (2.87:1) are decorative only — rules, perforations, hairlines, register marks — and never carry type that has to be read. --ink-quiet exists as a distinct name for exactly this: content that visually wants --ink-35 gets --ink-quiet instead. Reversed out of the flood, paper alphas hold too: #faf8f4d9 7.22:1, #faf8f4cc 6.60:1, #faf8f4b8 5.70:1, #faf8f4a6 4.97:1.",
+        "section": "colors"
+      },
+      {
+        "name": "The Press Reaches The Chrome Rule",
+        "body": "The parts of the page nobody drew still carry the press: selection is paper on green, the caret and accent colour are green, the scrollbar runs a green-30 thumb inside a toned track with a border-radius: 0 and an ink hairline, and the focus ring is a 2px green outline at 3px offset. Inside the flood, selection inverts back to green on paper.",
+        "section": "colors"
+      },
+      {
+        "name": "The Collision Rule",
+        "body": "Display type is set at 0.86 leading and -0.032em. Lines are meant to touch. Never loosen display leading past 1.0 to \"fix\" a collision; the collision is the type doing its job.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figure Rule",
+        "body": "Every numeral on this page is a printed figure. font-variant-numeric: tabular-nums lining-nums plus font-feature-settings: \"tnum\" 1, \"lnum\" 1 is bound to .tnum, table, [data-lattice] and .grot. A figure that can change (a fare, a count, a price, a page number) is always Archivo, always tabular, never Caslon.",
+        "section": "typography"
+      },
+      {
+        "name": "The Real Weight Rule",
+        "body": "Archivo is loaded as a variable face, so intermediate weights are real: 200 for display figures, 500/520 for captions and values, 600 for labels, 620/640/650 for emphasis and controls, 700 for reversed controls. font-synthesis-weight: none is set on body — the browser is forbidden from faking any of them, so never specify a weight the face does not carry.",
+        "section": "typography"
+      },
+      {
+        "name": "The Unequal Margin Rule",
+        "body": "--margin-out is always larger than --margin-in, and nothing is centred in its sheet. The table sits on the page the way a printed table does: ranged left against a deliberately unequal outer margin. Centring is used only inside the resolve stage, where the lifted decision is a single specimen line on an otherwise empty field.",
+        "section": "layout"
+      },
+      {
+        "name": "The Sacred Lattice Rule",
+        "body": "The fare lattice is measured in ch and is inviolable. Rows are built by padding each value to an exact character width (cell(value, width) → padEnd) and rendering them under white-space: pre in a tabular face — the column alignment is a property of the characters, not of a grid. Narrow screens scale the cell (11px → 9px) and reduce the column count (3 → 1). They never reflow a row into a stacked card.",
+        "section": "layout"
+      },
+      {
+        "name": "The Knockout, Not Shadow Rule",
+        "body": "If an element needs to be legible over the field, it gets a paper plate — a zero-blur, zero-offset box-shadow spread or a paper text-stroke. It never gets a blurred or offset shadow. box-shadow with a blur radius or an offset does not exist in this system.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tonal Depth Rule",
+        "body": "Surfaces change stock, not altitude. A block that needs to separate from the sheet moves from --paper to --paper-toned (and the toned sheet takes .fibre); it does not gain a border-radius, a shadow or a lift.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Radius Rule",
+        "body": "Nothing on this press has a radius. Every corner is square, including controls, stocks, frames, tabs and scrollbars.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Two Rule Weights Rule",
+        "body": "A rule is either a 1px hairline at reduced ink (separation within a block) or a 2px solid --ink line (a division between arguments). There is no third weight, no coloured rule on paper, and no dashed rule anywhere — a broken line is an authored perforation.",
+        "section": "shapes"
+      },
+      {
+        "name": "The One Animation Per Element Rule",
+        "body": "An element gets exactly one animation shorthand. A second shorthand declaration on the same element replaces the first outright rather than composing with it — it does not merge, and the loser simply never runs. So anything that must change colour and its knockout plate and its rule on the same beat is authored as one combined keyframe: foot-out carries color + border-top-color + background + box-shadow; plate-out carries background + box-shadow; the resolve tally's tally keyframe carries --routings + color. This rule is written into the source twice because breaking it produced two real defects — a green figure left sitting on a green sheet, and a foot that reversed its type but kept its paper plate.",
+        "section": "components"
+      },
+      {
+        "name": "The Static-First Motion Rule",
+        "body": "Every scroll-driven declaration is double-gated behind @supports (animation-timeline: view()) and @media (prefers-reduced-motion: no-preference). The unanimated state is the honest state: the field is fully legible, the decided line is already marked, the lift label and verdict are visible at opacity 1, and 420svh collapses to height: auto with a 62svh body. Under both fallbacks the flood and the reversal are replaced by knockout plates on paper and the verdict returns to ink. Nothing on this page needs the animation to be readable.",
+        "section": "components"
+      },
+      {
+        "name": "The No Library Rule",
+        "body": "All motion is native CSS: view-timeline, animation-range, timeline-scope on body for the six section timelines the thumb index reads, and a registered @property for the counter. There is no motion library, no requestAnimationFrame loop and no scroll listener in the build — a JS smooth-scroll layer was installed and removed because its rAF loop competed with the compositor-driven timelines it would have been scrolling.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do build every new colour as an alpha of --ink or --green over one of the three stocks. The ladders already in :root are the system; extend them in the same form rather than introducing a value.",
+      "Do use --ink-quiet (4.87:1) for anything that has to be read but visually wants to recede. --ink-35 is for rules and marks only.",
+      "Do flood the second ink across whole regions when it is used as a ground — a full sheet, a full viewport — and set it as type everywhere else.",
+      "Do set every numeral in Archivo with tabular-nums lining-nums, and pad lattice values with cell(value, width) so columns align on characters.",
+      "Do range content left against --margin-out and reserve --margin-in on the right; widen --margin-in wherever the thumb index is visible.",
+      "Do give an element that must change several properties on one beat a single combined keyframe.",
+      "Do ship every motion behind both @supports (animation-timeline: view()) and prefers-reduced-motion: no-preference, and author the static fallback first.",
+      "Do gate hover treatments behind @media (hover: hover) and (pointer: fine).",
+      "Do duotone every photograph into the two inks (grayscale + mix-blend-mode: screen over --green, plus the halftone screen) and print its credit in label-sm beneath it.",
+      "Do draw new icons as 16x16 SVG at 1.35 stroke with square caps and mitre joins, in currentColor."
+    ],
+    "donts": [
+      "Don't introduce a third colour — not for a state, not for an icon, not for a chart, not inside a photograph. There is no error red, no warning amber and no link blue in this system.",
+      "Don't put the second ink into a small container on neutral ground: no green pill, badge, chip, tag or filled button on paper.",
+      "Don't add a border-radius. Nothing on this press has one.",
+      "Don't use a blurred or offset box-shadow. Depth is stock, ink coverage and rule weight; box-shadow here is only a zero-blur paper knockout.",
+      "Don't loosen display leading above 1.0 or track it looser than -0.022em to avoid a collision between lines.",
+      "Don't reflow the fare lattice into stacked cards on narrow screens. Scale the cell and reduce the column count.",
+      "Don't centre a sheet's content or equalise the two outer margins.",
+      "Don't put two animation shorthand declarations on one element — the second replaces the first and the first silently stops running.",
+      "Don't add a motion library, a scroll listener or a rAF loop. If an effect cannot be expressed as a scroll-driven or state-driven CSS animation, it does not ship.",
+      "Don't use a dashed border for a broken line; author the perforation as a repeating-linear-gradient.",
+      "Don't use glyph icons, icon fonts or emoji in place of the authored SVG marks."
+    ]
+  }
+}
