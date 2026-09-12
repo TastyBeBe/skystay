@@ -993,6 +993,21 @@ table,
 
 /* Static state: with no timeline, the label is shown and nothing is hidden. */
 @supports not (animation-timeline: view()) {
+  .resolve-lift-label,
+  .resolve-lift,
+  .resolve-verdict {
+    background: var(--paper);
+    box-shadow: 0 0 0 0.7rem var(--paper);
+  }
+
+  .resolve-lift-wrap {
+    gap: 1.6rem;
+  }
+
+  .resolve-verdict {
+    max-width: 46ch;
+  }
+
   .resolve {
     height: auto;
   }
@@ -1016,6 +1031,21 @@ table,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .resolve-lift-label,
+  .resolve-lift,
+  .resolve-verdict {
+    background: var(--paper);
+    box-shadow: 0 0 0 0.7rem var(--paper);
+  }
+
+  .resolve-lift-wrap {
+    gap: 1.6rem;
+  }
+
+  .resolve-verdict {
+    max-width: 46ch;
+  }
+
   .resolve {
     height: auto;
   }
@@ -1927,8 +1957,8 @@ table,
    ------------------------------------------------------------ */
 
 .thumb-tab[data-on] {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .thumb-tab[data-on] .thumb-n {
@@ -1991,14 +2021,14 @@ table,
 
 @keyframes thumb-on {
   from {
-    background: var(--green);
-    border-color: var(--green);
+    background: var(--ink);
+    border-color: var(--ink);
     --thumb-fg: var(--paper);
     --thumb-fg-2: #faf8f4e0;
   }
   to {
-    background: var(--green);
-    border-color: var(--green);
+    background: var(--ink);
+    border-color: var(--ink);
     --thumb-fg: var(--paper);
     --thumb-fg-2: #faf8f4e0;
   }

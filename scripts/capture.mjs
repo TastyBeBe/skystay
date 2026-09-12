@@ -49,6 +49,19 @@ async function shot(name, width, height, { settle = true, scrollTo = null, fullP
 
 console.log("capturing…");
 await shot("desktop", 1440, 900, { fullPage: true });
+
+// Reduced motion, captured INSIDE the resolve stage — at scroll 0 it is by
+// definition identical to the hero and evidences nothing.
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" });
+  const page = await ctx.newPage();
+  await page.goto(URL, { waitUntil: "networkidle" });
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => { const r = document.querySelector(".resolve"); r.scrollIntoView(); window.scrollBy(0, r.offsetHeight * 0.35); });
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: `${OUT}/reduced-motion.png` });
+  await ctx.close();
+}
 await shot("mobile", 390, 844, { fullPage: true });
 await shot("desktop-hero", 1440, 900);
 await shot("mobile-hero", 390, 844);
