@@ -486,19 +486,19 @@ table,
     .resolve-row {
       animation: row-out linear both;
       animation-timeline: --resolve;
-      animation-range: var(--s, 20%) var(--e, 55%);
+      animation-range: var(--s, 42%) var(--e, 58%);
     }
 
     .resolve-lift {
       animation: lift linear both;
       animation-timeline: --resolve;
-      animation-range: 28% 72%;
+      animation-range: 44% 74%;
     }
 
     .resolve-flood {
       animation: flood linear both;
       animation-timeline: --resolve;
-      animation-range: 46% 64%;
+      animation-range: 54% 66%;
     }
 
     .resolve-head-copy h2,
@@ -507,25 +507,25 @@ table,
     .resolve-foot {
       animation: reverse-out linear both;
       animation-timeline: --resolve;
-      animation-range: 46% 64%;
+      animation-range: 54% 66%;
     }
 
     .resolve-head-copy p {
       animation: reverse-out-soft linear both;
       animation-timeline: --resolve;
-      animation-range: 46% 64%;
+      animation-range: 54% 66%;
     }
 
     .resolve-verdict {
       animation: verdict linear both;
       animation-timeline: --resolve;
-      animation-range: 62% 74%;
+      animation-range: 63% 74%;
     }
 
     .resolve-lift-label {
       animation: label-in linear both;
       animation-timeline: --resolve;
-      animation-range: 36% 62%;
+      animation-range: 48% 66%;
     }
 
     .resolve-count {
@@ -562,7 +562,7 @@ table,
     color: var(--paper);
   }
   100% {
-    transform: translate3d(0, 0, 0) scale(2.45);
+    transform: translate3d(0, 0, 0) scale(var(--lift-scale, 2.45));
     color: var(--paper);
   }
 }
@@ -802,7 +802,8 @@ table,
    ------------------------------------------------------------ */
 
 .resolve {
-  height: 360svh;
+  --lift-scale: 2.45;
+  height: 420svh;
   background: var(--paper);
   view-timeline-name: --resolve;
   view-timeline-axis: block;
@@ -825,9 +826,7 @@ table,
   z-index: 30;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--gutter);
-  mix-blend-mode: normal;
+  justify-content: flex-end;
 }
 
 .resolve-head-copy {
@@ -1813,7 +1812,7 @@ table,
     .resolve-foot {
       animation: plate-out linear both;
       animation-timeline: --resolve;
-      animation-range: 46% 64%;
+      animation-range: 54% 66%;
     }
   }
 }
@@ -1828,4 +1827,62 @@ table,
 
 .prose-stack p + p {
   margin-top: 1.15em;
+}
+
+/* ------------------------------------------------------------
+   Resolve lead — the setup, read before the reading begins.
+   ------------------------------------------------------------ */
+
+.resolve-lead {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--gutter) clamp(2rem, 6vw, 7rem);
+  align-items: end;
+  background: var(--paper);
+  padding: clamp(5rem, 12vh, 10rem) var(--margin-in) clamp(2.4rem, 5vh, 3.6rem)
+    var(--margin-out);
+  border-bottom: 2px solid var(--ink);
+}
+
+.resolve-lead-body {
+  padding-bottom: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  .resolve-lead {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+/* Mobile: the stage carries less, at a scale that fits the sheet. */
+@media (max-width: 860px) {
+  .resolve {
+    --lift-scale: 1.12;
+    height: 340svh;
+  }
+
+  .resolve-lift {
+    font-size: 10px;
+  }
+
+  .resolve-verdict {
+    padding-top: clamp(1.2rem, 4vh, 2.2rem);
+  }
+
+  .resolve-tally {
+    font-size: clamp(2.4rem, 14vw, 3.6rem);
+  }
+}
+
+@media (max-width: 430px) {
+  .resolve {
+    --lift-scale: 1;
+  }
+
+  .resolve-lift {
+    font-size: 9px;
+  }
 }
