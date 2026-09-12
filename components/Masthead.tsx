@@ -31,11 +31,18 @@ export function Masthead({ banner, tail }: { banner: string; tail: string }) {
         </a>
 
         {/* Effective-dates banner — the line a timetable always carries */}
+        {/* A banner line that wraps doubles the height of the plate. It runs
+            to the edge and clips there, the way a printed one does. */}
         <p
-          className="label-sm hidden md:flex items-center flex-1 border-l border-[var(--ink-20)] pl-[var(--gutter)]"
-          style={{ color: "var(--ink-55)" }}
+          className="label-sm hidden md:flex items-center flex-1 min-w-0 border-l border-[var(--ink-20)] pl-[var(--gutter)]"
+          style={{
+            color: "var(--ink-55)",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
         >
-          {banner}
+          <span className="truncate">{banner}</span>
         </p>
 
         <div className="flex items-center gap-[var(--gutter)] border-l border-[var(--ink-20)] pl-[var(--gutter)]">

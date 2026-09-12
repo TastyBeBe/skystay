@@ -1,0 +1,13 @@
+import { chromium } from "playwright";
+const b = await chromium.launch();
+const SETTLE = `[data-reveal],[data-reveal-rule]{animation:none!important;opacity:1!important;transform:none!important}[data-ticker],.lat-drift{animation:none!important}`;
+const ctx = await b.newContext({ viewport:{width:768,height:1024} });
+const p = await ctx.newPage();
+await p.goto("http://localhost:3000",{waitUntil:"networkidle"});
+await p.addStyleTag({content:SETTLE});
+await p.evaluate(()=>document.fonts.ready);
+await p.screenshot({path:".impeccable/review/tablet-hero.png"});
+await p.evaluate(()=>document.getElementById("membership").scrollIntoView());
+await p.waitForTimeout(400);
+await p.locator("#membership").screenshot({path:".impeccable/review/tablet-membership.png"});
+await b.close(); console.log("ok");
