@@ -18,8 +18,10 @@
   --ink: #16150f;
   --ink-90: #16150fe6;
   --ink-70: #16150fb3;
-  --ink-55: #16150f8c;
+  --ink-55: #16150f9c;
   --ink-35: #16150f59;
+  /* Content-bearing, unlike --ink-35: 4.7:1 on paper. */
+  --ink-quiet: #16150f9c;
   --ink-20: #16150f33;
   --ink-12: #16150f1f;
   --ink-07: #16150f12;
@@ -28,6 +30,8 @@
   --green: #1f4b3f;
   --green-80: #1f4b3fcc;
   --green-55: #1f4b3f8c;
+  /* 4.84:1 on paper — the second ink at content strength. */
+  --green-76: #1f4b3fc2;
   --green-30: #1f4b3f4d;
   --green-15: #1f4b3f26;
   --green-08: #1f4b3f14;
@@ -437,7 +441,7 @@ table,
 }
 
 .lat-b {
-  color: var(--green-55);
+  color: var(--green-76);
 }
 
 .lat-drift {
@@ -501,17 +505,14 @@ table,
       animation-range: 54% 66%;
     }
 
-    .resolve-head-copy h2,
-    .resolve-tally,
-    .resolve-tally-label,
-    .resolve-foot {
+    .resolve-tally-label {
       animation: reverse-out linear both;
       animation-timeline: --resolve;
       animation-range: 54% 66%;
     }
 
-    .resolve-head-copy p {
-      animation: reverse-out-soft linear both;
+    .resolve-foot {
+      animation: foot-out linear both;
       animation-timeline: --resolve;
       animation-range: 54% 66%;
     }
@@ -892,6 +893,38 @@ table,
   pointer-events: none;
 }
 
+/* Ink density: a flood this size is never a flat fill on a press. */
+.resolve-flood::after,
+.sheet-flood::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    radial-gradient(#faf8f4 0.5px, transparent 0.6px),
+    radial-gradient(
+      ellipse 120% 90% at 22% 12%,
+      #faf8f412 0%,
+      transparent 60%
+    ),
+    radial-gradient(ellipse 100% 80% at 85% 88%, #16150f1a 0%, transparent 62%);
+  background-size:
+    3px 3px,
+    100% 100%,
+    100% 100%;
+}
+
+.sheet-flood {
+  position: relative;
+  isolation: isolate;
+}
+
+.sheet-flood > * {
+  position: relative;
+  z-index: 1;
+}
+
 .resolve-lift-wrap {
   position: absolute;
   inset: 0;
@@ -905,7 +938,7 @@ table,
 }
 
 .resolve-lift-label {
-  color: var(--green-55);
+  color: var(--green);
   opacity: 0;
 }
 
@@ -1024,12 +1057,12 @@ table,
 @keyframes label-in {
   0% {
     opacity: 0;
-    color: var(--green-55);
+    color: var(--green);
   }
   40%,
   66% {
     opacity: 1;
-    color: var(--green-55);
+    color: var(--green);
   }
   70%,
   100% {
@@ -1298,7 +1331,7 @@ table,
   color: var(--green);
 }
 .log-struck .log-mark {
-  color: var(--ink-35);
+  color: var(--ink-quiet);
 }
 
 .log-label {
@@ -1325,6 +1358,7 @@ table,
   font-family: var(--font-text), Georgia, serif;
   font-size: 0.9375rem;
   line-height: 1.5;
+  max-width: 66ch;
   color: var(--ink-70);
   text-wrap: pretty;
 }
@@ -1514,7 +1548,10 @@ table,
 
 .btn-reverse {
   --btn-ink: var(--paper);
+  background: var(--paper);
   color: var(--green);
+  font-weight: 700;
+  padding: 1.15em 1.9em;
 }
 
 .btn-reverse::before {
@@ -1682,7 +1719,7 @@ table,
 
 .plate-credit {
   margin-top: 0.6rem;
-  color: var(--ink-35);
+  color: var(--ink-quiet);
 }
 
 .desk-fig {
@@ -1785,7 +1822,6 @@ table,
   text-wrap: pretty;
 }
 
-.resolve-head-copy,
 .resolve-tally-wrap,
 .resolve-foot {
   background: var(--paper);
@@ -1807,9 +1843,7 @@ table,
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .resolve-head-copy,
-    .resolve-tally-wrap,
-    .resolve-foot {
+    .resolve-tally-wrap {
       animation: plate-out linear both;
       animation-timeline: --resolve;
       animation-range: 54% 66%;
@@ -1884,5 +1918,130 @@ table,
 
   .resolve-lift {
     font-size: 9px;
+  }
+}
+
+/* ------------------------------------------------------------
+   Thumb index: the current page, marked.
+   Each sheet publishes a timeline; the matching tab reads it. No JS.
+   ------------------------------------------------------------ */
+
+.thumb-tab[data-on] {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.thumb-tab[data-on] .thumb-n {
+  color: var(--paper);
+}
+
+.thumb-tab[data-on] .thumb-label {
+  color: #faf8f4e0;
+}
+
+@supports (animation-timeline: view()) {
+  body {
+    timeline-scope: --s-resolve, --s-document, --s-trust, --s-work, --s-person,
+      --s-membership;
+  }
+
+  #resolve {
+    view-timeline-name: --s-resolve;
+  }
+  #document {
+    view-timeline-name: --s-document;
+  }
+  #trust {
+    view-timeline-name: --s-trust;
+  }
+  #work {
+    view-timeline-name: --s-work;
+  }
+  #person {
+    view-timeline-name: --s-person;
+  }
+  #membership {
+    view-timeline-name: --s-membership;
+  }
+
+  .thumb-tab {
+    animation: thumb-on steps(1, end) none;
+    animation-range: contain 0% contain 100%;
+  }
+
+  .thumb-tab[href="#resolve"] {
+    animation-timeline: --s-resolve;
+  }
+  .thumb-tab[href="#document"] {
+    animation-timeline: --s-document;
+  }
+  .thumb-tab[href="#trust"] {
+    animation-timeline: --s-trust;
+  }
+  .thumb-tab[href="#work"] {
+    animation-timeline: --s-work;
+  }
+  .thumb-tab[href="#person"] {
+    animation-timeline: --s-person;
+  }
+  .thumb-tab[href="#membership"] {
+    animation-timeline: --s-membership;
+  }
+}
+
+@keyframes thumb-on {
+  from {
+    background: var(--green);
+    border-color: var(--green);
+    --thumb-fg: var(--paper);
+    --thumb-fg-2: #faf8f4e0;
+  }
+  to {
+    background: var(--green);
+    border-color: var(--green);
+    --thumb-fg: var(--paper);
+    --thumb-fg-2: #faf8f4e0;
+  }
+}
+
+.thumb-n {
+  color: var(--thumb-fg, var(--green));
+}
+
+.thumb-label {
+  color: var(--thumb-fg-2, var(--ink-70));
+}
+
+/* FIX 7 — at 390 the two controls sit one above the other rather than
+   letting the secondary wrap to three lines beside a two-line primary. */
+@media (max-width: 560px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+  }
+
+  .hero-actions .btn,
+  .hero-actions .btn-ghost {
+    justify-content: space-between;
+    white-space: nowrap;
+  }
+}
+
+/* The foot carries type, a plate and a rule. All three cut together. */
+@keyframes foot-out {
+  0%,
+  49% {
+    color: var(--ink-55);
+    border-top-color: var(--ink-20);
+    background: var(--paper);
+    box-shadow: 0 0 0 0.7rem var(--paper);
+  }
+  51%,
+  100% {
+    color: #faf8f4d9;
+    border-top-color: #faf8f459;
+    background: #faf8f400;
+    box-shadow: 0 0 0 0.7rem #faf8f400;
   }
 }

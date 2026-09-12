@@ -2,7 +2,8 @@ import { Register } from "./Icons";
 
 export function Masthead({ banner, tail }: { banner: string; tail: string }) {
   return (
-    <header className="sticky top-0 z-50 bg-[var(--paper)]/92 backdrop-saturate-100 rule-b-ink">
+    <header className="sticky top-0 z-50 rule-b-ink"
+      style={{ background: "var(--paper)" }}>
       <div
         className="flex items-stretch"
         style={{ paddingInline: "var(--margin-out)" }}

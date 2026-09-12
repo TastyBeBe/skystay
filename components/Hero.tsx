@@ -55,10 +55,10 @@ export function Hero({
           <span style={{ color: "var(--green)" }}>{considered}</span> routings
           read for one trip
         </span>
-        <span className="hidden sm:inline" style={{ color: "var(--ink-35)" }}>
+        <span className="hidden sm:inline" style={{ color: "var(--ink-quiet)" }}>
           Fig. 1 · Live availability board, members&rsquo; edition
         </span>
-        <span style={{ color: "var(--ink-35)" }}>
+        <span style={{ color: "var(--ink-quiet)" }}>
           All figures on this sheet are demonstration material
         </span>
       </div>

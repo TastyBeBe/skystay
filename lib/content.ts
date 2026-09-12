@@ -2299,10 +2299,12 @@ export const rejected: Routing[] = [
   }
 ];
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const media = {
-  sky: "/plates/sky.jpg",
-  stay: "/plates/stay.jpg",
-  desk: "/plates/desk.jpg",
+  sky: `${BP}/plates/sky.jpg`,
+  stay: `${BP}/plates/stay.jpg`,
+  desk: `${BP}/plates/desk.jpg`,
   skyCredit: "Photograph William Bayreuther · Unsplash · printed in two inks",
   stayCredit: "Photograph Linus Mimietz · Unsplash · printed in two inks",
   deskCredit: "Photograph Vitaly Gariev · Unsplash · printed in two inks",
